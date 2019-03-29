@@ -1,0 +1,27 @@
+PODS:
+  - HPCustomAlertController (0.1.0):
+    - SnapkitArrayExtention
+  - SnapKit (4.2.0)
+  - SnapkitArrayExtention (0.1.3):
+    - SnapKit
+
+DEPENDENCIES:
+  - HPCustomAlertController (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SnapKit
+    - SnapkitArrayExtention
+
+EXTERNAL SOURCES:
+  HPCustomAlertController:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  HPCustomAlertController: 6be99c465e50b96eaca12a5a3683f90f47dc483b
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SnapkitArrayExtention: 0b90388690f5c1bddf75c421eac25ce291bfa1e9
+
+PODFILE CHECKSUM: 68354cc71df305a07b6d9ab86ab2caa38d469ff2
+
+COCOAPODS: 1.6.1
