@@ -1,5 +1,5 @@
 PODS:
-  - HCPCustomAlertController (0.1.2):
+  - HCPCustomAlertController (0.1.5):
     - SnapKit
     - SnapkitArrayExtention
   - SnapKit (4.2.0)
@@ -19,7 +19,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  HCPCustomAlertController: 03ef8cfe58cddfbb7b071e7117fbd5083b57cd0a
+  HCPCustomAlertController: 9fd47eb4f3ff078010df4882edb54d211309f356
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SnapkitArrayExtention: 0b90388690f5c1bddf75c421eac25ce291bfa1e9
 
