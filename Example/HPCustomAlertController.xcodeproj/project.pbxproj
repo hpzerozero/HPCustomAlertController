@@ -30,7 +30,7 @@
 /* Begin PBXFileReference section */
 		04E415708790DBB044F16C52 /* Pods_HPCustomAlertController_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HPCustomAlertController_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2775F7792A2E1E67D6E2A2B9 /* Pods-HPCustomAlertController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HPCustomAlertController_Example.release.xcconfig"; path = "Target Support Files/Pods-HPCustomAlertController_Example/Pods-HPCustomAlertController_Example.release.xcconfig"; sourceTree = "<group>"; };
-		2CEF731192CF85D877F9D6CD /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		2CEF731192CF85D877F9D6CD /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		3E6CA8F86F502279C0A72C4D /* Pods-HPCustomAlertController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HPCustomAlertController_Example.debug.xcconfig"; path = "Target Support Files/Pods-HPCustomAlertController_Example/Pods-HPCustomAlertController_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* HPCustomAlertController_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HPCustomAlertController_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -44,9 +44,9 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		611ACE5A4E80EFCB17020290 /* Pods-HPCustomAlertController_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HPCustomAlertController_Tests.release.xcconfig"; path = "Target Support Files/Pods-HPCustomAlertController_Tests/Pods-HPCustomAlertController_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		812FF58477C61E3F70E6FCF9 /* Pods-HPCustomAlertController_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HPCustomAlertController_Tests.debug.xcconfig"; path = "Target Support Files/Pods-HPCustomAlertController_Tests/Pods-HPCustomAlertController_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		CCB2480C08584C4ABF094BCF /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		CCB2480C08584C4ABF094BCF /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		E3DF2E9F6D6B36ABFAE6C8E3 /* Pods_HPCustomAlertController_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HPCustomAlertController_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FFBEECB8641069C514EEA36B /* HPCustomAlertController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = HPCustomAlertController.podspec; path = ../HPCustomAlertController.podspec; sourceTree = "<group>"; };
+		FFBEECB8641069C514EEA36B /* HPCustomAlertController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = HPCustomAlertController.podspec; path = ../HPCustomAlertController.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +147,6 @@
 				812FF58477C61E3F70E6FCF9 /* Pods-HPCustomAlertController_Tests.debug.xcconfig */,
 				611ACE5A4E80EFCB17020290 /* Pods-HPCustomAlertController_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -190,7 +189,6 @@
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				5E721E7249FD8B809E393773 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -214,10 +212,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = RBMMQXB92D;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = RBMMQXB92D;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -228,6 +228,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -263,34 +264,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5E721E7249FD8B809E393773 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HPCustomAlertController_Tests/Pods-HPCustomAlertController_Tests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
-				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/Nimble-Snapshots/Nimble_Snapshots.framework",
-				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble_Snapshots.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HPCustomAlertController_Tests/Pods-HPCustomAlertController_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B4BE7D6E8A43B00B7DD286C4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -323,12 +296,16 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-HPCustomAlertController_Example/Pods-HPCustomAlertController_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/HPCustomAlertController/HPCustomAlertController.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapkitArrayExtention/SnapkitArrayExtention.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HPCustomAlertController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapkitArrayExtention.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -511,10 +488,12 @@
 			baseConfigurationReference = 3E6CA8F86F502279C0A72C4D /* Pods-HPCustomAlertController_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RBMMQXB92D;
 				INFOPLIST_FILE = HPCustomAlertController/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.HPCustomAlertController-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -526,10 +505,12 @@
 			baseConfigurationReference = 2775F7792A2E1E67D6E2A2B9 /* Pods-HPCustomAlertController_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RBMMQXB92D;
 				INFOPLIST_FILE = HPCustomAlertController/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.HPCustomAlertController-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -540,6 +521,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 812FF58477C61E3F70E6FCF9 /* Pods-HPCustomAlertController_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = RBMMQXB92D;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -562,6 +544,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 611ACE5A4E80EFCB17020290 /* Pods-HPCustomAlertController_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = RBMMQXB92D;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

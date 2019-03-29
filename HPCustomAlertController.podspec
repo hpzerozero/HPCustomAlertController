@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'HPCustomAlertController'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of HPCustomAlertController.'
+  s.summary          = 'custom alertController same as UIAlertController'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,8 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+这是用于自定义弹窗组件，方便用来自定义上面显示的视图，自定义按钮颜色。项目依赖Snapkit和SnapkitArrayExtension,
+依赖的版本都没有设置限制，均为最新
                        DESC
 
   s.homepage         = 'https://github.com/hpzerozero/HPCustomAlertController'
@@ -28,15 +29,16 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/hpzerozero/HPCustomAlertController.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   s.source_files = 'HPCustomAlertController/Classes/**/*'
-  
+  s.swift_version = '4.0'
   # s.resource_bundles = {
   #   'HPCustomAlertController' => ['HPCustomAlertController/Assets/*.png']
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+   s.frameworks = 'UIKit'
+   s.dependency 'SnapKit'
+   s.dependency 'SnapkitArrayExtention'
 end
