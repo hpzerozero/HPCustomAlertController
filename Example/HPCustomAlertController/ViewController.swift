@@ -9,13 +9,19 @@
 import UIKit
 import SnapKit
 import SnapkitArrayExtention
-import HPCustomAlertController
+import HCPCustomAlertController
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-
+        let alertC = HPCustomAlertController(title: "警告", message: "这是一个弹窗，提示你一些事情", iconName: nil)
+        alertC.add(action: HPCustomAlertAction(title: "取消", bgImageName: nil, titleColor: nil, action: {
+            print("取消")
+        }))
+        alertC.add(action: HPCustomAlertAction(title: "确定", bgImageName: nil, titleColor: nil, action: {
+            print("确定")
+        }))
+        alertC.show(aViewController: self)
     }
 
     override func didReceiveMemoryWarning() {

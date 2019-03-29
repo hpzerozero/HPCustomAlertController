@@ -15,7 +15,7 @@ let SCREEN_BOUNDS = UIScreen.main.bounds
 let SCREEN_MIN = min(SCREEN_WIDTH, SCREEN_HEIGHT)
 let SCREEN_MAX = max(SCREEN_WIDTH, SCREEN_HEIGHT)
 // MARK: 颜色
-func RGB(r: CGFloat, g: CGFloat, b: CGFloat) -> UIColor {
+public func RGB(r: CGFloat, g: CGFloat, b: CGFloat) -> UIColor {
     
     return UIColor.init(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: 1.0)
 }

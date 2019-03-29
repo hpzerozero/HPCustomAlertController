@@ -8,7 +8,7 @@
 
 import UIKit
 import SnapkitArrayExtention
-@objc class HPCustomAlertController: UIViewController {
+@objc public class HPCustomAlertController: UIViewController {
 
     private var bgView:UIView!
     private var contentView:UIView!
@@ -19,12 +19,8 @@ import SnapkitArrayExtention
     private var separatorColLine: UIView?
     private var actions = Array<HPCustomAlertAction>()
     private var customView:UIView?
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
     
-    private convenience init (title:String?,message:String,iconName:String?) {
+    public convenience init (title:String?,message:String,iconName:String?) {
         self.init()
         buildUI()
         if let title = title {
@@ -54,14 +50,14 @@ import SnapkitArrayExtention
     ///   - message: 描述信息
     ///   - iconName: 图标
     /// - Returns: 返回弹窗对象
-    @objc class func alert(title:String?,message:String,iconName:String?)->HPCustomAlertController {
+    @objc public class func alert(title:String?,message:String,iconName:String?)->HPCustomAlertController {
         return HPCustomAlertController(title: title, message: message, iconName: iconName)
     }
     
     /// 添加按钮
     ///
     /// - Parameter action: 按钮对象
-    @objc func add(action:HPCustomAlertAction) {
+    @objc public func add(action:HPCustomAlertAction) {
         action.alertController = self
         actions.append(action)
         contentView.addSubview(action.button!)
@@ -70,7 +66,7 @@ import SnapkitArrayExtention
     /// 添加自定义视图
     ///
     /// - Parameter custom: 自定义的视图，默认约束：有按钮是(0,0,0,10)，无按钮(0,0,0,0)
-    @objc func add(custom:UIView?) {
+    @objc public func add(custom:UIView?) {
         customView = custom
         if let customView = custom {
             contentView.addSubview(customView)
@@ -80,7 +76,7 @@ import SnapkitArrayExtention
     /// 弹出弹窗
     ///
     /// - Parameter aViewController: 当前弹窗所在的控制器
-    @objc func show(aViewController:UIViewController) {
+    @objc public func show(aViewController:UIViewController) {
         view.setNeedsUpdateConstraints()
         view.updateConstraintsIfNeeded()
         modalPresentationStyle = .overFullScreen
@@ -123,7 +119,7 @@ import SnapkitArrayExtention
             maker.edges.equalToSuperview().inset(UIEdgeInsets.zero)
         }
     }
-    override func updateViewConstraints() {
+    override public func updateViewConstraints() {
         if let customView = customView {
             contentView.addSubview(customView)
             customView.snp.makeConstraints { (maker) in
@@ -235,11 +231,11 @@ import SnapkitArrayExtention
 
 }
 
-@objc class HPCustomAlertAction: NSObject {
+@objc public class HPCustomAlertAction: NSObject {
     fileprivate var clickAction:(()->Void)?
     fileprivate var button:UIButton?
     fileprivate weak var alertController:UIViewController?
-    private convenience init(title:String,bgImageName:String?,titleColor:UIColor?,action:(() -> Void)? = nil) {
+    public convenience init(title:String,bgImageName:String?,titleColor:UIColor?,action:(() -> Void)? = nil) {
         self.init()
         button = createButton(textColor: titleColor, backgroundColor: nil, bgImageName: bgImageName, title: title, action: action)
     }
@@ -252,7 +248,7 @@ import SnapkitArrayExtention
     ///   - titleColor: 按钮颜色
     ///   - action: 按钮事件
     /// - Returns: 按钮
-    @objc class func action(title:String,bgImageName:String?,titleColor:UIColor?=RGB(r: 30, g: 144, b: 255),action:(() -> Void)? = nil) -> HPCustomAlertAction{
+    @objc public class func action(title:String,bgImageName:String?,titleColor:UIColor?=RGB(r: 30, g: 144, b: 255),action:(() -> Void)? = nil) -> HPCustomAlertAction{
         var textColor = titleColor
         if textColor==nil {
             textColor = RGB(r: 30, g: 144, b: 255)

@@ -1,5 +1,5 @@
 // https://github.com/Quick/Quick
 
 
-import HPCustomAlertController
+import HCPCustomAlertController
 
