@@ -1,7 +1,7 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-## HPCustomAlertController
+## HCPCustomAlertController
 
 Copyright (c) 2019 hpzerozero <fly_dapeng@163.com>
 

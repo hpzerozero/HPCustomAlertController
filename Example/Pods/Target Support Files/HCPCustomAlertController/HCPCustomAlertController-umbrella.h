@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double HPCustomAlertControllerVersionNumber;
-FOUNDATION_EXPORT const unsigned char HPCustomAlertControllerVersionString[];
+FOUNDATION_EXPORT double HCPCustomAlertControllerVersionNumber;
+FOUNDATION_EXPORT const unsigned char HCPCustomAlertControllerVersionString[];
 

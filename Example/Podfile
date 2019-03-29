@@ -1,7 +1,7 @@
 use_frameworks!
 
 target 'HPCustomAlertController_Example' do
-  pod 'HPCustomAlertController', :path => '../'
+  pod 'HCPCustomAlertController', :path => '../'
 
   target 'HPCustomAlertController_Tests' do
     inherit! :search_paths

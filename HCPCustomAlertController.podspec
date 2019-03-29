@@ -7,7 +7,7 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'HPCustomAlertController'
+  s.name             = 'HCPCustomAlertController'
   s.version          = '0.1.2'
   s.summary          = 'custom alertController same as UIAlertController'
 
@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'HPCustomAlertController/Classes/**/*'
+  s.source_files = 'HCPCustomAlertController/Classes/**/*'
   s.swift_version = '4.0'
   # s.resource_bundles = {
   #   'HPCustomAlertController' => ['HPCustomAlertController/Assets/*.png']

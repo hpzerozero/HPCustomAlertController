@@ -295,7 +295,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-HPCustomAlertController_Example/Pods-HPCustomAlertController_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/HPCustomAlertController/HPCustomAlertController.framework",
+				"${BUILT_PRODUCTS_DIR}/HCPCustomAlertController/HCPCustomAlertController.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapkitArrayExtention/SnapkitArrayExtention.framework",
 			);
@@ -303,7 +303,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HPCustomAlertController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HCPCustomAlertController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapkitArrayExtention.framework",
 			);
