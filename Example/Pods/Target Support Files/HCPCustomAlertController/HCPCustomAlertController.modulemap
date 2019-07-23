@@ -1,6 +1,0 @@
-framework module HCPCustomAlertController {
-  umbrella header "HCPCustomAlertController-umbrella.h"
-
-  export *
-  module * { export * }
-}

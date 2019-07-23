@@ -12,6 +12,9 @@ import SnapkitArrayExtention
 @objc public enum HPCustomAlertButtonStyle : Int {
     case rectangleFill,roundConnerFill,roundConnerGhost,archGhost,archFill,noneBackground
 }
+@objc public enum HPCustomAlertControllerStyle : Int {
+    case alert,actionSheet
+}
 
 @objc public class HPCustomAlertController: UIViewController {
 
@@ -25,6 +28,7 @@ import SnapkitArrayExtention
     private var actions = Array<HPCustomAlertAction>()
     private var customView:UIView?
     private var buttonEdgeinsets:UIEdgeInsets = UIEdgeInsets(top: 15, left: 29, bottom: 15, right: 29)
+    private var alertControllerStyle = HPCustomAlertControllerStyle.alert
     
     @objc public var dimBackground: Bool=true {
         didSet {
@@ -38,12 +42,34 @@ import SnapkitArrayExtention
         }
     }
     
-    public convenience init (title:String?,message:String,iconName:String?) {
-        self.init(title: title, titleColor: nil, message: message, iconName: iconName,buttonEdgeInsets: nil)
+    public convenience init (custom:UIView,buttonEdgeInsets:UIEdgeInsets?,alertStyle:HPCustomAlertControllerStyle = .alert) {
+        self.init()
+        self.customView = custom
+        self.alertControllerStyle = alertStyle
+        if buttonEdgeInsets != nil {
+            self.buttonEdgeinsets = buttonEdgeInsets!
+        }
+        buildUI()
     }
     
-    public convenience init(title:String?,titleColor:UIColor?,message:String,iconName:String?,buttonEdgeInsets:UIEdgeInsets?) {
+    public convenience init (title:String?,message:String,iconName:String?=nil) {
+        self.init(title: title,
+                  titleColor: nil,
+                  message: message,
+                  iconName: iconName,
+                  buttonEdgeInsets: nil,
+                  alertStyle: .alert)
+    }
+    
+    public convenience init(title:String?,
+                            titleColor:UIColor?,
+                            message:String,
+                            iconName:String?=nil,
+                            buttonEdgeInsets:UIEdgeInsets?,
+                            alertStyle:HPCustomAlertControllerStyle = .alert) {
+        
         self.init()
+        self.alertControllerStyle = alertStyle
         if buttonEdgeInsets != nil {
             self.buttonEdgeinsets = buttonEdgeInsets!
         }
@@ -67,6 +93,7 @@ import SnapkitArrayExtention
             contentView.addSubview(iconImageView!)
         }
     }
+    
     /// 生成弹窗对象
     ///
     /// - Parameters:
@@ -74,8 +101,13 @@ import SnapkitArrayExtention
     ///   - message: 描述信息
     ///   - iconName: 图标
     /// - Returns: 返回弹窗对象
-    @objc public class func alert(title:String?,message:String,iconName:String?)->HPCustomAlertController {
-        return HPCustomAlertController(title: title, titleColor: nil, message: message, iconName: iconName,buttonEdgeInsets: nil)
+    @objc public class func alert(title:String?,message:String,iconName:String?=nil)->HPCustomAlertController {
+        return HPCustomAlertController(title: title,
+                                       titleColor: nil,
+                                       message: message,
+                                       iconName: iconName,
+                                       buttonEdgeInsets: nil,
+                                       alertStyle: .alert)
     }
     
     /// 生成弹窗对象
@@ -87,8 +119,19 @@ import SnapkitArrayExtention
     ///   - iconName: 图标
     ///   - buttonStyle: 按钮的样式
     /// - Returns: 弹窗t对象
-    @objc public class func alert(title:String?,titleColor:UIColor?,message:String,iconName:String?,buttonEdgeInsets:UIEdgeInsets)->HPCustomAlertController {
-        return HPCustomAlertController(title: title, titleColor: titleColor, message: message, iconName: iconName,buttonEdgeInsets: buttonEdgeInsets)
+    @objc public class func alert(title:String?,
+                                  titleColor:UIColor?,
+                                  message:String,
+                                  iconName:String?=nil,
+                                  buttonEdgeInsets:UIEdgeInsets,
+                                  alertStyle:HPCustomAlertControllerStyle = .alert)->HPCustomAlertController {
+        
+        return HPCustomAlertController(title: title,
+                                       titleColor: titleColor,
+                                       message: message,
+                                       iconName: iconName,
+                                       buttonEdgeInsets: buttonEdgeInsets,
+                                       alertStyle: alertStyle)
     }
     
     /// 添加按钮
@@ -131,21 +174,26 @@ import SnapkitArrayExtention
         contentView.backgroundColor = RGB(r: 255, g: 255, b: 255)
         contentView.layer.cornerRadius = 10.0;
         contentView.layer.masksToBounds = true
+        view.addSubview(bgView)
+        view.addSubview(contentView)
         
 //        let effect = UIBlurEffect(style: .light)
 //        let blurView = UIVisualEffectView(effect: effect)
 //        contentView.addSubview(blurView)
-        messageLabel = createLabel(color: RGB(r: 102, g: 102, b: 102), alignment: .center, font: UIFont.systemFont(ofSize: 14))
-        separatorLine = UIView()
-        separatorLine?.backgroundColor = RGB(r: 238, g: 238, b: 238)
-        separatorColLine = UIView()
-        separatorColLine?.backgroundColor = RGB(r: 238, g: 238, b: 238)
-        
-        view.addSubview(bgView)
-        view.addSubview(contentView)
-        contentView.addSubview(messageLabel!)
-        contentView.addSubview(separatorLine!)
-        contentView.addSubview(separatorColLine!)
+        if let custom = self.customView {
+            contentView.addSubview(custom)
+        } else {
+            
+            messageLabel = createLabel(color: RGB(r: 102, g: 102, b: 102), alignment: .center, font: UIFont.systemFont(ofSize: 14))
+            separatorLine = UIView()
+            separatorLine?.backgroundColor = RGB(r: 238, g: 238, b: 238)
+            separatorColLine = UIView()
+            separatorColLine?.backgroundColor = RGB(r: 238, g: 238, b: 238)
+            
+            contentView.addSubview(messageLabel!)
+            contentView.addSubview(separatorLine!)
+            contentView.addSubview(separatorColLine!)
+        }
         bgView.snp.updateConstraints { (maker) in
             maker.edges.equalTo(UIEdgeInsets.zero)
         }
@@ -203,6 +251,10 @@ import SnapkitArrayExtention
         }
         
         if actions.count>0 {
+            var axis = NSLayoutConstraint.Axis.horizontal
+            if alertControllerStyle == .actionSheet {
+                axis = .vertical
+            }
             var buttons = Array<UIButton>()
             for item in contentView.subviews {
                 if item is UIButton {
@@ -221,32 +273,74 @@ import SnapkitArrayExtention
                 }
                 
             } else if buttons.count==2 {
-                separatorLine?.snp.makeConstraints({ (maker) in
+                if axis == .horizontal {
+                    
+                    separatorLine?.snp.makeConstraints({ (maker) in
+                        maker.left.right.equalToSuperview()
+                        if let custom = customView {
+                            maker.top.equalTo(custom.snp.bottom).offset(15)
+                        } else {
+                            maker.top.equalTo(messageLabel!.snp.bottom).offset(20)
+                        }
+                        maker.height.equalTo(0.5)
+                    })
+                    separatorColLine?.snp.makeConstraints({ (maker) in
+                        maker.centerX.equalToSuperview()
+                        maker.top.equalTo(separatorLine!.snp.bottom)
+                        maker.width.equalTo(0.5)
+                        maker.bottom.equalToSuperview()
+                    })
+                    buttons.snp.distributeViewsAlong(axisType: axis, fixedSpacing: buttonEdgeinsets.left+buttonEdgeinsets.right, leadSpacing: buttonEdgeinsets.left, tailSpacing: buttonEdgeinsets.right)
+                    buttons.snp.makeConstraints { (maker) in
+                        maker.top.equalTo(self.separatorLine!.snp.bottom).offset(buttonEdgeinsets.top)
+                        maker.bottom.equalTo((-buttonEdgeinsets.bottom))
+                        maker.height.equalTo(buttonHeight)
+                    }
+                } else {
+                    separatorLine?.isHidden = true
+                    separatorColLine?.isHidden = true
+                    let tmp = UIView(frame: .zero)
+                    contentView.addSubview(tmp)
+                    for item in buttons.enumerated() {
+                        tmp.addSubview(item.element)
+                    }
+                    tmp.snp.makeConstraints { (maker) in
+                        maker.left.right.equalToSuperview()
+                        maker.bottom.equalTo(-6)
+                        if let custom = customView {
+                            maker.top.equalTo(custom.snp.bottom).offset(15)
+                        } else {
+                            maker.top.equalTo(messageLabel!.snp.bottom).offset(15)
+                        }
+                    }
+                    buttons.snp.distributeViewsAlong(axisType: axis, fixedSpacing: 8, leadSpacing: buttonEdgeinsets.top, tailSpacing: buttonEdgeinsets.bottom)
+                    buttons.snp.makeConstraints { (maker) in
+                        maker.left.equalTo(buttonEdgeinsets.left)
+                        maker.right.equalTo((-buttonEdgeinsets.right))
+                        maker.height.equalTo(buttonHeight)
+                    }
+                }
+            } else {
+                separatorLine?.isHidden = true
+                separatorColLine?.isHidden = true
+                let tmp = UIView(frame: .zero)
+                contentView.addSubview(tmp)
+                for item in buttons.enumerated() {
+                    tmp.addSubview(item.element)
+                }
+                tmp.snp.makeConstraints { (maker) in
                     maker.left.right.equalToSuperview()
+                    maker.bottom.equalTo(-6)
                     if let custom = customView {
                         maker.top.equalTo(custom.snp.bottom).offset(15)
                     } else {
-                        maker.top.equalTo(messageLabel!.snp.bottom).offset(20)
+                        maker.top.equalTo(messageLabel!.snp.bottom).offset(15)
                     }
-                    maker.height.equalTo(0.5)
-                })
-                separatorColLine?.snp.makeConstraints({ (maker) in
-                    maker.centerX.equalToSuperview()
-                    maker.top.equalTo(separatorLine!.snp.bottom)
-                    maker.width.equalTo(0.5)
-                    maker.bottom.equalToSuperview()
-                })
-                buttons.snp.distributeViewsAlong(axisType: .horizontal, fixedSpacing: buttonEdgeinsets.left+buttonEdgeinsets.right, leadSpacing: buttonEdgeinsets.left, tailSpacing: buttonEdgeinsets.right)
-                buttons.snp.makeConstraints { (maker) in
-                    maker.top.equalTo(self.separatorLine!.snp.bottom).offset(buttonEdgeinsets.top)
-                    maker.bottom.equalTo((-buttonEdgeinsets.bottom))
-                    maker.height.equalTo(buttonHeight)
                 }
-            } else {
-                buttons.snp.distributeViewsAlong(axisType: .vertical, fixedSpacing: buttonEdgeinsets.top, leadSpacing: buttonEdgeinsets.left, tailSpacing: buttonEdgeinsets.right)
+                buttons.snp.distributeViewsAlong(axisType: axis, fixedSpacing: 8, leadSpacing: buttonEdgeinsets.top, tailSpacing: buttonEdgeinsets.bottom)
                 buttons.snp.makeConstraints { (maker) in
-                    maker.top.equalTo(self.messageLabel!.snp.bottom).offset(buttonEdgeinsets.top)
-                    maker.bottom.equalTo((-buttonEdgeinsets.bottom))
+                    maker.left.equalTo(buttonEdgeinsets.left)
+                    maker.right.equalTo((-buttonEdgeinsets.right))
                     maker.height.equalTo(buttonHeight)
                 }
             }
@@ -278,11 +372,28 @@ import SnapkitArrayExtention
     fileprivate weak var alertController:UIViewController?
     
     public convenience init(title:String,bgImageName:String?,titleColor:UIColor?,action:(() -> Void)? = nil) {
-        self.init(title: title,backgroundColor:nil, bgImageName: bgImageName, titleColor: titleColor, buttonStyle: .rectangleFill, action: action)
+        self.init(title: title,
+                  backgroundColor:nil,
+                  bgImageName: bgImageName,
+                  titleColor: titleColor,
+                  buttonStyle: .rectangleFill,
+                  action: action)
     }
-    public convenience init(title:String,backgroundColor:UIColor?,bgImageName:String?,titleColor:UIColor?,buttonStyle:HPCustomAlertButtonStyle,action:(() -> Void)? = nil) {
+    public convenience init(title:String,
+                            _ attributeString:NSAttributedString? = nil,
+                            backgroundColor:UIColor?,
+                            bgImageName:String?,
+                            titleColor:UIColor?,
+                            buttonStyle:HPCustomAlertButtonStyle,
+                            action:(() -> Void)? = nil) {
         self.init()
-        button = createButton(textColor: titleColor, backgroundColor: backgroundColor, bgImageName: bgImageName, title: title,buttonStyle: buttonStyle, action: action)
+        button = createButton(textColor: titleColor,
+                              backgroundColor: backgroundColor,
+                              bgImageName: bgImageName,
+                              title: title,
+                              attributeString,
+                              buttonStyle: buttonStyle,
+                              action: action)
     }
     /// 添加按钮事件
     ///
@@ -292,42 +403,54 @@ import SnapkitArrayExtention
     ///   - titleColor: 按钮颜色
     ///   - action: 按钮事件
     /// - Returns: 按钮
-    @objc public class func action(title:String,bgImageName:String?,titleColor:UIColor?=RGB(r: 30, g: 144, b: 255),action:(() -> Void)? = nil) -> HPCustomAlertAction{
+    @objc public class func action(title:String,
+                                   bgImageName:String?,
+                                   titleColor:UIColor?=RGB(r: 30, g: 144, b: 255),
+                                   action:(() -> Void)? = nil) -> HPCustomAlertAction{
         
-        return HPCustomAlertAction(title: title,backgroundColor:nil, bgImageName: bgImageName, titleColor: titleColor, buttonStyle: .rectangleFill, action: action)
+        return HPCustomAlertAction(title: title,
+                                   backgroundColor:nil,
+                                   bgImageName: bgImageName,
+                                   titleColor: titleColor,
+                                   buttonStyle: .rectangleFill,
+                                   action: action)
     }
     
-    @objc public class func action(title:String,backgroundColor:UIColor?,bgImageName:String?,titleColor:UIColor?=RGB(r: 30, g: 144, b: 255),buttonStyle:HPCustomAlertButtonStyle,action:(() -> Void)? = nil) -> HPCustomAlertAction{
+    @objc public class func action(title:String,
+                                   _ attributeString:NSAttributedString? = nil,
+                                   backgroundColor:UIColor?,
+                                   bgImageName:String?,
+                                   titleColor:UIColor?=RGB(r: 30, g: 144, b: 255),
+                                   buttonStyle:HPCustomAlertButtonStyle,
+                                   action:(() -> Void)? = nil) -> HPCustomAlertAction{
+        
         var textColor = titleColor
         if textColor==nil {
             textColor = RGB(r: 30, g: 144, b: 255)
         }
-        return HPCustomAlertAction(title: title,backgroundColor:backgroundColor, bgImageName: bgImageName, titleColor: textColor,buttonStyle: buttonStyle, action: action)
+        return HPCustomAlertAction(title: title,
+                                   attributeString,
+                                   backgroundColor:backgroundColor,
+                                   bgImageName: bgImageName,
+                                   titleColor: textColor,
+                                   buttonStyle: buttonStyle,
+                                   action: action)
     }
     
-    fileprivate func createButton(textColor:UIColor?,backgroundColor:UIColor?,bgImageName:String?,title:String,action:(() -> Void)? = nil) -> UIButton {
-        let tmp = UIButton(type: .custom)
-        tmp.setTitleColor(textColor, for: .normal)
-        tmp.backgroundColor = backgroundColor
-        tmp.titleLabel?.font = UIFont.systemFont(ofSize: 14);
-        tmp.setTitle(title, for: .normal)
-        if let bgImageName = bgImageName {
-            tmp.setBackgroundImage(UIImage(named: bgImageName), for: .normal)
-        }
-        clickAction = action
-        if ((action) != nil) {
-            tmp .addTarget(self, action: #selector(buttonClick(sender:)), for: .touchUpInside)
-        }
-        return tmp
-    }
-    
-    fileprivate func createButton(textColor:UIColor?,backgroundColor:UIColor?,bgImageName:String?,title:String,buttonStyle:HPCustomAlertButtonStyle,action:(() -> Void)? = nil) -> UIButton {
+    fileprivate func createButton(textColor:UIColor?,
+                                  backgroundColor:UIColor?,
+                                  bgImageName:String?,
+                                  title:String,
+                                  _ attributeString:NSAttributedString? = nil,
+                                  buttonStyle:HPCustomAlertButtonStyle,
+                                  action:(() -> Void)? = nil) -> UIButton {
         
         let tmp = UIButton(type: .custom)
         tmp.setTitleColor((textColor ?? RGB51), for: .normal)
         tmp.backgroundColor = backgroundColor
         tmp.titleLabel?.font = UIFont.systemFont(ofSize: 14);
         tmp.setTitle(title, for: .normal)
+        tmp.setAttributedTitle(attributeString, for: .normal)
         if let bgImageName = bgImageName {
             tmp.setBackgroundImage(UIImage(named: bgImageName), for: .normal)
         } else {
@@ -343,11 +466,11 @@ import SnapkitArrayExtention
                 tmp.layer.borderWidth = 1
             } else if (buttonStyle == .archFill) {
                 
-                tmp.layer.masksToBounds = true
                 tmp.layer.cornerRadius = 18
-            } else if (buttonStyle == .roundConnerFill) {
                 tmp.layer.masksToBounds = true
+            } else if (buttonStyle == .roundConnerFill) {
                 tmp.layer.cornerRadius = 5
+                tmp.layer.masksToBounds = true
             } else if (buttonStyle == .noneBackground) {
                 
             }
