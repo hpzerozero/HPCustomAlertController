@@ -16,8 +16,8 @@ import SnapkitArrayExtention
     case alert,actionSheet
 }
 
-@objc public class HPCustomAlertController: UIViewController {
-
+@objc open class HPCustomAlertController: UIViewController {
+    
     private var bgView:UIView!
     private var contentView:UIView!
     private var iconImageView:UIImageView?
@@ -42,13 +42,11 @@ import SnapkitArrayExtention
         }
     }
     
-    public convenience init (custom:UIView,buttonEdgeInsets:UIEdgeInsets?,alertStyle:HPCustomAlertControllerStyle = .alert) {
+    @objc public convenience init (custom:UIView,buttonEdgeInsets:UIEdgeInsets,alertStyle:HPCustomAlertControllerStyle = .alert) {
         self.init()
         self.customView = custom
         self.alertControllerStyle = alertStyle
-        if buttonEdgeInsets != nil {
-            self.buttonEdgeinsets = buttonEdgeInsets!
-        }
+        self.buttonEdgeinsets = buttonEdgeInsets
         buildUI()
     }
     
@@ -134,6 +132,10 @@ import SnapkitArrayExtention
                                        alertStyle: alertStyle)
     }
     
+    @objc public class func alert(custom:UIView,buttonEdgeInsets:UIEdgeInsets,alertStyle:HPCustomAlertControllerStyle = .alert)->HPCustomAlertController {
+        return HPCustomAlertController(custom: custom, buttonEdgeInsets: buttonEdgeInsets, alertStyle: alertStyle)
+    }
+    
     /// 添加按钮
     ///
     /// - Parameter action: 按钮对象
@@ -177,9 +179,9 @@ import SnapkitArrayExtention
         view.addSubview(bgView)
         view.addSubview(contentView)
         
-//        let effect = UIBlurEffect(style: .light)
-//        let blurView = UIVisualEffectView(effect: effect)
-//        contentView.addSubview(blurView)
+        //        let effect = UIBlurEffect(style: .light)
+        //        let blurView = UIVisualEffectView(effect: effect)
+        //        contentView.addSubview(blurView)
         if let custom = self.customView {
             contentView.addSubview(custom)
         } else {
@@ -202,11 +204,11 @@ import SnapkitArrayExtention
             maker.left.equalTo(40)
             maker.right.equalTo(-40)
         }
-//        blurView.snp.makeConstraints { (maker) in
-//            maker.edges.equalToSuperview().inset(UIEdgeInsets.zero)
-//        }
+        //        blurView.snp.makeConstraints { (maker) in
+        //            maker.edges.equalToSuperview().inset(UIEdgeInsets.zero)
+        //        }
     }
-    override public func updateViewConstraints() {
+    override open func updateViewConstraints() {
         if let customView = customView {
             contentView.addSubview(customView)
             customView.snp.makeConstraints { (maker) in
@@ -363,14 +365,13 @@ import SnapkitArrayExtention
         tmp.font = font;
         return tmp
     }
-
 }
 
 @objc public class HPCustomAlertAction: NSObject {
     fileprivate var clickAction:(()->Void)?
     fileprivate var button:UIButton?
     fileprivate weak var alertController:UIViewController?
-    
+    private var autoDismiss:Bool = true
     public convenience init(title:String,bgImageName:String?,titleColor:UIColor?,action:(() -> Void)? = nil) {
         self.init(title: title,
                   backgroundColor:nil,
@@ -385,14 +386,17 @@ import SnapkitArrayExtention
                             bgImageName:String?,
                             titleColor:UIColor?,
                             buttonStyle:HPCustomAlertButtonStyle,
+                            autoDismiss:Bool = true,
                             action:(() -> Void)? = nil) {
         self.init()
+        self.autoDismiss = autoDismiss
         button = createButton(textColor: titleColor,
                               backgroundColor: backgroundColor,
                               bgImageName: bgImageName,
                               title: title,
                               attributeString,
                               buttonStyle: buttonStyle,
+                              autoDismiss:autoDismiss,
                               action: action)
     }
     /// 添加按钮事件
@@ -422,6 +426,7 @@ import SnapkitArrayExtention
                                    bgImageName:String?,
                                    titleColor:UIColor?=RGB(r: 30, g: 144, b: 255),
                                    buttonStyle:HPCustomAlertButtonStyle,
+                                   autoDismiss:Bool = true,
                                    action:(() -> Void)? = nil) -> HPCustomAlertAction{
         
         var textColor = titleColor
@@ -434,6 +439,7 @@ import SnapkitArrayExtention
                                    bgImageName: bgImageName,
                                    titleColor: textColor,
                                    buttonStyle: buttonStyle,
+                                   autoDismiss:autoDismiss,
                                    action: action)
     }
     
@@ -443,6 +449,7 @@ import SnapkitArrayExtention
                                   title:String,
                                   _ attributeString:NSAttributedString? = nil,
                                   buttonStyle:HPCustomAlertButtonStyle,
+                                  autoDismiss:Bool,
                                   action:(() -> Void)? = nil) -> UIButton {
         
         let tmp = UIButton(type: .custom)
@@ -483,7 +490,9 @@ import SnapkitArrayExtention
     }
     
     @objc fileprivate func buttonClick(sender:UIButton) {
-        alertController?.dismiss(animated: true, completion: nil)
+        if autoDismiss {        
+            alertController?.dismiss(animated: true, completion: nil)
+        }
         clickAction?()
     }
 }

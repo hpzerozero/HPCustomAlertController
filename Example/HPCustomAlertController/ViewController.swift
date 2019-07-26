@@ -71,8 +71,9 @@ class ViewController: UIViewController {
                                                                .underlineStyle:NSUnderlineStyle.styleSingle.rawValue,
                                                                .underlineColor:RGB(r: 28, g: 164, b: 96),
                                                                .foregroundColor:RGB(r: 28, g: 164, b: 96)])
-        alertC3.add(action: HPCustomAlertAction(title: "",attribute, backgroundColor: nil, bgImageName: nil, titleColor: RGB(r: 28, g: 164, b: 96), buttonStyle: .noneBackground, action: {
+        alertC3.add(action: HPCustomAlertAction(title: "",attribute, backgroundColor: nil, bgImageName: nil, titleColor: RGB(r: 28, g: 164, b: 96), buttonStyle: .noneBackground,autoDismiss:false, action: {
             print("取消")
+            alertC3.dismiss(animated: true, completion: nil)
         }))
         alertC3.show(aViewController: self)
     }
