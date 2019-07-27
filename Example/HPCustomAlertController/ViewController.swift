@@ -32,15 +32,15 @@ class ViewController: UIViewController {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let alertC2 = HPCustomAlertController(title: "警告", titleColor: RGB(r: 255, g: 80, b: 0), message: "这是一个弹窗，提示你一些事情这是一个弹窗，提示你一些事情这是一个弹窗，提示你一些事情这是一个弹窗，提示你一些事情", iconName: nil, buttonEdgeInsets: UIEdgeInsets(top: 7, left: 20, bottom: 7, right: 20),alertStyle: .actionSheet)
-//        alertC2.dimBackground = false
-        
-        alertC2.add(action: HPCustomAlertAction(title: "确定", backgroundColor: RGB(r: 28, g: 164, b: 96), bgImageName: nil, titleColor: RGB(r: 255, g: 255, b: 255), buttonStyle: .archFill, action: {
-            print("确定")
-        }))
-        alertC2.add(action: HPCustomAlertAction(title: "查看具体技巧>", backgroundColor: nil, bgImageName: nil, titleColor: RGB(r: 28, g: 164, b: 96), buttonStyle: .noneBackground, action: {
-            print("取消")
-        }))
+//        let alertC2 = HPCustomAlertController(title: "警告", titleColor: RGB(r: 255, g: 80, b: 0), message: "这是一个弹窗，提示你一些事情这是一个弹窗，提示你一些事情这是一个弹窗，提示你一些事情这是一个弹窗，提示你一些事情", iconName: nil, buttonEdgeInsets: UIEdgeInsets(top: 7, left: 20, bottom: 7, right: 20),alertStyle: .actionSheet)
+////        alertC2.dimBackground = false
+//        
+//        alertC2.add(action: HPCustomAlertAction(title: "确定", backgroundColor: RGB(r: 28, g: 164, b: 96), bgImageName: nil, titleColor: RGB(r: 255, g: 255, b: 255), buttonStyle: .archFill, action: {
+//            print("确定")
+//        }))
+//        alertC2.add(action: HPCustomAlertAction(title: "查看具体技巧>", backgroundColor: nil, bgImageName: nil, titleColor: RGB(r: 28, g: 164, b: 96), buttonStyle: .noneBackground, action: {
+//            print("取消")
+//        }))
 //        alertC2.show(aViewController: self)
         let content = UIView(frame: .zero)
         let label = createLabel(color: RGB(r: 28, g: 164, b: 96), alignment: .center, font: UIFont.systemFont(ofSize: 16, weight: .bold))

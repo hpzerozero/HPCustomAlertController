@@ -187,15 +187,15 @@ import SnapkitArrayExtention
         } else {
             
             messageLabel = createLabel(color: RGB(r: 102, g: 102, b: 102), alignment: .center, font: UIFont.systemFont(ofSize: 14))
-            separatorLine = UIView()
-            separatorLine?.backgroundColor = RGB(r: 238, g: 238, b: 238)
-            separatorColLine = UIView()
-            separatorColLine?.backgroundColor = RGB(r: 238, g: 238, b: 238)
-            
             contentView.addSubview(messageLabel!)
-            contentView.addSubview(separatorLine!)
-            contentView.addSubview(separatorColLine!)
         }
+        separatorLine = UIView()
+        separatorLine?.backgroundColor = RGB(r: 238, g: 238, b: 238)
+        separatorColLine = UIView()
+        separatorColLine?.backgroundColor = RGB(r: 238, g: 238, b: 238)
+        contentView.addSubview(separatorLine!)
+        contentView.addSubview(separatorColLine!)
+        
         bgView.snp.updateConstraints { (maker) in
             maker.edges.equalTo(UIEdgeInsets.zero)
         }
