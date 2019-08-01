@@ -359,7 +359,7 @@ import SnapkitArrayExtention
         super.updateViewConstraints()
     }
     
-    @objc func showCancel(_ imageName:String?,action:(()->Void)?) {
+    @objc public func showCancel(_ imageName:String?,action:(()->Void)?) {
         let tmp = UIButton(type: .custom)
         if let imageName = imageName {
             tmp.setImage(UIImage(named: imageName), for: .normal)
