@@ -21,6 +21,7 @@
 		E640180D22E6C97C00F3D6F7 /* ThemeDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E640180822E6C97C00F3D6F7 /* ThemeDefine.swift */; };
 		E640180E22E6C97C00F3D6F7 /* ThemeDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E640180822E6C97C00F3D6F7 /* ThemeDefine.swift */; };
 		E640181922E6DEEE00F3D6F7 /* IMG_C8E151F1CE14-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E640181822E6DEEE00F3D6F7 /* IMG_C8E151F1CE14-1.jpg */; };
+		E6F4FE2D22F2D9BD00292C74 /* round_close_fill.png in Resources */ = {isa = PBXBuildFile; fileRef = E6F4FE2C22F2D9BD00292C74 /* round_close_fill.png */; };
 		F9147C2BCB74EA195003B50F /* Pods_HPCustomAlertController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3DF2E9F6D6B36ABFAE6C8E3 /* Pods_HPCustomAlertController_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		E640180722E6C97C00F3D6F7 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		E640180822E6C97C00F3D6F7 /* ThemeDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeDefine.swift; sourceTree = "<group>"; };
 		E640181822E6DEEE00F3D6F7 /* IMG_C8E151F1CE14-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "IMG_C8E151F1CE14-1.jpg"; sourceTree = "<group>"; };
+		E6F4FE2C22F2D9BD00292C74 /* round_close_fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = round_close_fill.png; sourceTree = "<group>"; };
 		FFBEECB8641069C514EEA36B /* HPCustomAlertController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = HPCustomAlertController.podspec; path = ../HPCustomAlertController.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				E640181822E6DEEE00F3D6F7 /* IMG_C8E151F1CE14-1.jpg */,
+				E6F4FE2C22F2D9BD00292C74 /* round_close_fill.png */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -274,6 +277,7 @@
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				E6F4FE2D22F2D9BD00292C74 /* round_close_fill.png in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				E640181922E6DEEE00F3D6F7 /* IMG_C8E151F1CE14-1.jpg in Resources */,
 				E640180B22E6C97C00F3D6F7 /* .gitkeep in Resources */,

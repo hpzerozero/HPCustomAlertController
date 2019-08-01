@@ -75,6 +75,7 @@ class ViewController: UIViewController {
             print("取消")
             alertC3.dismiss(animated: true, completion: nil)
         }))
+        alertC3.showCancel("round_close_fill", action: nil)
         alertC3.show(aViewController: self)
     }
     

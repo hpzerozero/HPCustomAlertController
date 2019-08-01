@@ -29,7 +29,8 @@ import SnapkitArrayExtention
     private var customView:UIView?
     private var buttonEdgeinsets:UIEdgeInsets = UIEdgeInsets(top: 15, left: 29, bottom: 15, right: 29)
     private var alertControllerStyle = HPCustomAlertControllerStyle.alert
-    
+    private var cancelButton:UIButton?
+    private var cancelAction:(()->Void)?
     @objc public var dimBackground: Bool=true {
         didSet {
             if dimBackground {
@@ -273,7 +274,6 @@ import SnapkitArrayExtention
                     maker.bottom.equalTo((-buttonEdgeinsets.bottom))
                     maker.height.equalTo(buttonHeight)
                 }
-                
             } else if buttons.count==2 {
                 if axis == .horizontal {
                     
@@ -351,8 +351,30 @@ import SnapkitArrayExtention
             separatorColLine?.isHidden = true
         }
         
-        
+        cancelButton?.snp.makeConstraints({ (maker) in
+            maker.centerX.equalToSuperview()
+            maker.top.equalTo(self.contentView.snp.bottom).offset(42)
+            maker.width.height.equalTo(36)
+        })
         super.updateViewConstraints()
+    }
+    
+    @objc func showCancel(_ imageName:String?,action:(()->Void)?) {
+        let tmp = UIButton(type: .custom)
+        if let imageName = imageName {
+            tmp.setImage(UIImage(named: imageName), for: .normal)
+        }
+        tmp.addTarget(self, action: #selector(doCancelAction), for: .touchUpInside)
+        cancelAction = action
+        cancelButton = tmp
+        view.addSubview(tmp)
+        view.bringSubview(toFront: tmp)
+        view.updateConstraintsIfNeeded()
+    }
+    
+    @objc private func doCancelAction() {
+        cancelAction?()
+        dismiss(animated: true, completion: nil)
     }
     
     func createLabel(color:UIColor?,alignment:NSTextAlignment?,font:UIFont?) -> UILabel {
