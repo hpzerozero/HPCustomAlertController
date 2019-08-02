@@ -301,7 +301,8 @@ import SnapkitArrayExtention
                 } else {
                     separatorLine?.isHidden = true
                     separatorColLine?.isHidden = true
-                    let tmp = UIView(frame: .zero)
+                    let tmp = contentView.viewWithTag(111111) ?? UIView(frame: .zero)
+                    tmp.tag = 111111
                     contentView.addSubview(tmp)
                     for item in buttons.enumerated() {
                         tmp.addSubview(item.element)
@@ -325,8 +326,8 @@ import SnapkitArrayExtention
             } else {
                 separatorLine?.isHidden = true
                 separatorColLine?.isHidden = true
-                let tmp = UIView(frame: .zero)
-                contentView.addSubview(tmp)
+                let tmp = contentView.viewWithTag(111111) ?? UIView(frame: .zero)
+                tmp.tag = 111111
                 for item in buttons.enumerated() {
                     tmp.addSubview(item.element)
                 }
@@ -368,8 +369,8 @@ import SnapkitArrayExtention
         cancelAction = action
         cancelButton = tmp
         view.addSubview(tmp)
-        view.bringSubview(toFront: tmp)
-        view.updateConstraintsIfNeeded()
+        //        view.bringSubview(toFront: tmp)
+        //        view.updateConstraintsIfNeeded()
     }
     
     @objc private func doCancelAction() {
@@ -505,14 +506,12 @@ import SnapkitArrayExtention
             }
         }
         clickAction = action
-        if ((action) != nil) {
-            tmp .addTarget(self, action: #selector(buttonClick(sender:)), for: .touchUpInside)
-        }
+        tmp .addTarget(self, action: #selector(buttonClick(sender:)), for: .touchUpInside)
         return tmp
     }
     
     @objc fileprivate func buttonClick(sender:UIButton) {
-        if autoDismiss {        
+        if autoDismiss {
             alertController?.dismiss(animated: true, completion: nil)
         }
         clickAction?()
