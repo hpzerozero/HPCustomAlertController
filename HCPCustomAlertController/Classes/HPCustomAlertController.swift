@@ -477,8 +477,12 @@ import SnapkitArrayExtention
         
         let tmp = UIButton(type: .custom)
         tmp.setTitleColor((textColor ?? RGB51), for: .normal)
+        if backgroundColor != nil{
+            tmp.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold);
+        } else {
+            tmp.titleLabel?.font = UIFont.systemFont(ofSize: 14);
+        }
         tmp.backgroundColor = backgroundColor
-        tmp.titleLabel?.font = UIFont.systemFont(ofSize: 14);
         tmp.setTitle(title, for: .normal)
         tmp.setAttributedTitle(attributeString, for: .normal)
         if let bgImageName = bgImageName {
