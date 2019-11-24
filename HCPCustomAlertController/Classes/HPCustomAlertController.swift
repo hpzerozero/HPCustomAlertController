@@ -188,6 +188,7 @@ import SnapkitArrayExtention
         } else {
             
             messageLabel = createLabel(color: RGB(r: 102, g: 102, b: 102), alignment: .center, font: UIFont.systemFont(ofSize: 14))
+            messageLabel?.textAlignment = .left
             contentView.addSubview(messageLabel!)
         }
         separatorLine = UIView()
@@ -516,8 +517,12 @@ import SnapkitArrayExtention
     
     @objc fileprivate func buttonClick(sender:UIButton) {
         if autoDismiss {
-            alertController?.dismiss(animated: true, completion: nil)
+            alertController?.dismiss(animated: true, completion: {[weak self] in
+                self?.clickAction?()
+            })
+        } else {
+            clickAction?()
         }
-        clickAction?()
+        
     }
 }

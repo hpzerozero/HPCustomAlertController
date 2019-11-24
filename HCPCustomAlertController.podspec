@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'HCPCustomAlertController'
-  s.version          = '0.2.5'
+  s.version          = '0.2.6'
   s.summary          = 'custom alertController same as UIAlertController'
 
 # This description is used to generate tags and improve search results.
@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'HCPCustomAlertController/Classes/**/*'
-  s.swift_version = '4.0'
+  s.swift_version = '5.0'
   # s.resource_bundles = {
   #   'HPCustomAlertController' => ['HPCustomAlertController/Assets/*.png']
   # }
