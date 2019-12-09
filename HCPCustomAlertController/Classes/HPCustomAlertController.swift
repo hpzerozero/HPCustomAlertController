@@ -269,7 +269,11 @@ import SnapkitArrayExtention
             
             if buttons.count==1 {
                 buttons.snp.makeConstraints { (maker) in
-                    maker.top.equalTo(messageLabel!.snp.bottom).offset(buttonEdgeinsets.top)
+                    if let custom = customView {
+                        maker.top.equalTo(custom.snp.bottom).offset(20)
+                    } else {
+                        maker.top.equalTo(messageLabel!.snp.bottom).offset(20)
+                    }
                     maker.left.equalTo(buttonEdgeinsets.left)
                     maker.right.equalTo(-buttonEdgeinsets.right)
                     maker.bottom.equalTo((-buttonEdgeinsets.bottom))
