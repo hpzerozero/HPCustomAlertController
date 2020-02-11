@@ -35,8 +35,8 @@ import SnapkitArrayExtention
         didSet {
             if dimBackground {
                 
-                bgView.backgroundColor = UIColor.black
-                bgView.alpha = 0.5
+                bgView.backgroundColor = UIColor.colorBgB
+                bgView.alpha = 0.9
             } else {
                 bgView.backgroundColor = UIColor.clear
             }
@@ -170,11 +170,11 @@ import SnapkitArrayExtention
     func buildUI() {
         bgView = UIView()
         if dimBackground {
-            bgView.backgroundColor = UIColor.black
-            bgView.alpha = 0.5
+            bgView.backgroundColor = UIColor.colorBgB
+            bgView.alpha = 0.9
         }
         contentView = UIView()
-        contentView.backgroundColor = RGB(r: 255, g: 255, b: 255)
+        contentView.backgroundColor = UIColor.colorBgW
         contentView.layer.cornerRadius = 10.0;
         contentView.layer.masksToBounds = true
         view.addSubview(bgView)
@@ -187,14 +187,14 @@ import SnapkitArrayExtention
             contentView.addSubview(custom)
         } else {
             
-            messageLabel = createLabel(color: RGB(r: 102, g: 102, b: 102), alignment: .center, font: UIFont.systemFont(ofSize: 14))
+            messageLabel = createLabel(color: UIColor.color106, alignment: .center, font: UIFont.systemFont(ofSize: 14))
             messageLabel?.textAlignment = .left
             contentView.addSubview(messageLabel!)
         }
         separatorLine = UIView()
-        separatorLine?.backgroundColor = RGB(r: 238, g: 238, b: 238)
+        separatorLine?.backgroundColor = UIColor.color245
         separatorColLine = UIView()
-        separatorColLine?.backgroundColor = RGB(r: 238, g: 238, b: 238)
+        separatorColLine?.backgroundColor = UIColor.color245
         contentView.addSubview(separatorLine!)
         contentView.addSubview(separatorColLine!)
         
@@ -481,7 +481,7 @@ import SnapkitArrayExtention
                                   action:(() -> Void)? = nil) -> UIButton {
         
         let tmp = UIButton(type: .custom)
-        tmp.setTitleColor((textColor ?? RGB51), for: .normal)
+        tmp.setTitleColor((textColor ?? UIColor.color51), for: .normal)
         if backgroundColor != nil{
             tmp.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold);
         } else {
@@ -496,12 +496,12 @@ import SnapkitArrayExtention
             if (buttonStyle == .rectangleFill) {
                 
             } else if (buttonStyle == .archGhost) {
-                tmp.layer.borderColor = RGB153.cgColor
+                tmp.layer.borderColor = UIColor.color153.cgColor
                 tmp.layer.borderWidth = 1
                 tmp.layer.cornerRadius = 18
             } else if (buttonStyle == .roundConnerGhost) {
                 tmp.layer.cornerRadius = 5
-                tmp.layer.borderColor = RGB153.cgColor
+                tmp.layer.borderColor = UIColor.color153.cgColor
                 tmp.layer.borderWidth = 1
             } else if (buttonStyle == .archFill) {
                 

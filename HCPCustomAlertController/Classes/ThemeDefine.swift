@@ -24,4 +24,140 @@ let RGB51 = RGB(r: 51, g: 51, b: 51)
 let RGB245 = RGB(r: 245, g: 245, b: 245)
 let RGB153 = RGB(r: 153, g: 153, b: 153)
 
+/// 判断是否是暗黑模式
+func hp_isDarkMode() -> Bool {
+    var isDarkMode = false
+    if #available(iOS 13.0, *) {
+        isDarkMode = UITraitCollection.current.userInterfaceStyle == UIUserInterfaceStyle.dark
+    }
+    return isDarkMode
+    
+    
+}
 
+extension UIColor {
+    class var colorBgW: UIColor {
+        var color:UIColor!
+        if #available(iOS 13.0, *) {
+            color = UIColor(dynamicProvider: { (traitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .dark {
+                    return UIColor.systemBackground
+                } else {
+                    return UIColor.white
+                }
+            })
+        } else {
+            color = UIColor.white
+        }
+        return color
+    }
+    class var colorBgB: UIColor {
+        var color:UIColor!
+        if #available(iOS 13.0, *) {
+            color = UIColor(dynamicProvider: { (traitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .dark {
+                    return UIColor.tertiarySystemBackground
+                } else {
+                    return UIColor.black
+                }
+            })
+        } else {
+            color = UIColor.black
+        }
+        return color
+    }
+    class var colorW: UIColor {
+        var color:UIColor!
+        if #available(iOS 13.0, *) {
+            color = UIColor(dynamicProvider: { (traitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .dark {
+                    return UIColor.label
+                } else {
+                    return UIColor.white
+                }
+            })
+        } else {
+            color = UIColor.white
+        }
+        return color
+    }
+    
+    class var color245: UIColor {
+        var color:UIColor!
+        if #available(iOS 13.0, *) {
+            color = UIColor(dynamicProvider: { (traitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .dark {
+                    return UIColor.quaternaryLabel
+                } else {
+                    return RGB245
+                }
+            })
+        } else {
+            color = RGB245
+        }
+        return color
+    }
+    class var color153: UIColor {
+        var color:UIColor!
+        if #available(iOS 13.0, *) {
+            color = UIColor(dynamicProvider: { (traitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .dark {
+                    return UIColor.tertiaryLabel
+                } else {
+                    return RGB153
+                }
+            })
+        } else {
+            color = RGB153
+        }
+        return color
+    }
+    
+    class var color106: UIColor {
+        var color:UIColor!
+        if #available(iOS 13.0, *) {
+            color = UIColor(dynamicProvider: { (traitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .dark {
+                    return UIColor.secondaryLabel
+                } else {
+                    return RGB(r: 106, g: 106, b: 106)
+                }
+            })
+        } else {
+            color = RGB(r: 106, g: 106, b: 106)
+        }
+        return color
+    }
+    
+    class var color51: UIColor {
+        var color:UIColor!
+        if #available(iOS 13.0, *) {
+            color = UIColor(dynamicProvider: { (traitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .dark {
+                    return UIColor.secondaryLabel
+                } else {
+                    return RGB51
+                }
+            })
+        } else {
+            color = RGB51
+        }
+        return color
+    }
+    
+    class var colorB: UIColor {
+        var color:UIColor!
+        if #available(iOS 13.0, *) {
+            color = UIColor(dynamicProvider: { (traitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .dark {
+                    return UIColor.label
+                } else {
+                    return UIColor.black
+                }
+            })
+        } else {
+            color = UIColor.black
+        }
+        return color
+    }
+}
