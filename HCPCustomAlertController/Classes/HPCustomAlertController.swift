@@ -36,7 +36,7 @@ import SnapkitArrayExtention
             if dimBackground {
                 
                 bgView.backgroundColor = UIColor.colorBgB
-                bgView.alpha = 0.9
+                bgView.alpha = 0.6
             } else {
                 bgView.backgroundColor = UIColor.clear
             }
@@ -171,7 +171,7 @@ import SnapkitArrayExtention
         bgView = UIView()
         if dimBackground {
             bgView.backgroundColor = UIColor.colorBgB
-            bgView.alpha = 0.9
+            bgView.alpha = 0.6
         }
         contentView = UIView()
         contentView.backgroundColor = UIColor.colorBgW
